@@ -1,17 +1,40 @@
 {
+    "name": "gem5 Development Container",
+    "image": "ghcr.io/gem5/ubuntu-24.04_all-dependencies:latest@sha256:5713aa0b57efb1c432b757a0f7c72f676d7dd5a66e842ae21502633836efc9e8",
     "hostRequirements": {
-        "cpus": 16,
-        "memory": "8gb",
+        "cpus": 4,
+        "memory": "16gb",
         "storage": "32gb"
+     },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitHub.vscode-pull-request-github",
+                "ms-python.debugpy",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-vscode.cpptools-themes",
+                "ms-vscode.makefile-tools",
+                "Tsinghua-Hexin-Joint-Institute.gem5-slicc",
+                "ms-python.black-formatter",
+                "marp-team.marp-vscode",
+                "hediet.vscode-drawio",
+                "ms-vsliveshare.vsliveshare",
+                "DavidAnson.vscode-markdownlint"
+            ]
+        }
     },
-    "build": { "dockerfile": "Dockerfile" },
-    "onCreateCommand" : "bash ./.devcontainer/on_create.sh",
-    "runArgs": ["--privileged", "-v", "/var/run/docker.sock:/var/run/docker.sock", "--security-opt", "seccomp=unconfined"],
-	"extensions": [
-		"ms-vscode.cpptools",
-		"streetsidesoftware.code-spell-checker",
-		"eamodio.gitlens",
-		"ms-python.vscode-pylance",
-		"ms-python.python"
-	]
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers-contrib/features/actionlint:1": {},
+        "ghcr.io/devcontainers-contrib/features/vscode-cli:1": {},
+        "ghcr.io/devcontainers/features/sshd:1": { "version": "latest" }
+    },
+    "onCreateCommand": "./.devcontainer/on_create.sh",
+    "postStartCommand": "./.devcontainer/post_start.sh"
 }
